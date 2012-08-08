@@ -5,7 +5,6 @@ FrameShow::FrameShow()
     boardWidth = 0;
     boardHeight = 0;
     boardSize = cv::Size(boardWidth,boardHeight);
-    //start();
     cap.open(0);
     cap.set(CV_CAP_PROP_FRAME_WIDTH,800);
     cap.set(CV_CAP_PROP_FRAME_HEIGHT,600);

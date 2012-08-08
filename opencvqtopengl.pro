@@ -18,10 +18,8 @@ macx {
 }
 
 SOURCES += main.cpp \
-    gui.cpp \
     frameshow.cpp \
     opencvgl.cpp
-HEADERS += gui.h \
-    frameshow.h \
+HEADERS += frameshow.h \
     opencvgl.h
 

@@ -1,7 +1,18 @@
 #include "opencvgl.h"
 
-OpenCVGL::OpenCVGL()
+OpenCVGL::OpenCVGL(QWidget *parent)
+    : QGLWidget(parent)
 {
+    f = new FrameShow();
+
+    connect(f,SIGNAL(newImage()),this,SLOT(gotNewImage()));
+}
+
+void OpenCVGL::gotNewImage()
+{
+    f->m_mutex.lock();
+    renderImage(f->out);
+    f->m_mutex.unlock();
 }
 
 void OpenCVGL::initializeGL()
