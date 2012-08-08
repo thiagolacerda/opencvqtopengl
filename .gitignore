@@ -10,3 +10,8 @@
 *.lai
 *.la
 *.a
+
+Makefile
+moc_*
+*.app
+*.swp
