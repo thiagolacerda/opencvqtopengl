@@ -2,10 +2,30 @@
 
 OpenCVGL::OpenCVGL(QWidget *parent)
     : QGLWidget(parent)
+    , m_view(0)
 {
     f = new FrameShow();
 
     connect(f,SIGNAL(newImage()),this,SLOT(gotNewImage()));
+}
+
+void OpenCVGL::setView(QDeclarativeView *view)
+{
+    if (m_view == view)
+        return;
+
+    if (m_view) {
+        disconnect(m_view, SIGNAL(viewResized()), this, SLOT(onViewResized()));
+        m_view = 0;
+    }
+
+    m_view = view;
+    connect(m_view, SIGNAL(viewResized()), SLOT(onViewResized()));
+}
+
+void OpenCVGL::onViewResized()
+{
+    setGeometry(0, 0, m_view->width(), m_view->height());
 }
 
 void OpenCVGL::gotNewImage()
@@ -48,6 +68,7 @@ void OpenCVGL::paintGL()
 
 void OpenCVGL::resizeGL(int width, int height)
 {
+    qWarning() << "resizeGL";
     glViewport(0,0,width,height);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -58,7 +79,7 @@ void OpenCVGL::resizeGL(int width, int height)
 
 void OpenCVGL::renderImage(const QImage &frame)
 {
-    m_GLFrame = QGLWidget::convertToGLFormat(frame);
+    m_GLFrame = QGLWidget::convertToGLFormat(frame.scaled(width(), height()));
     this->updateGL();
     update();
 }

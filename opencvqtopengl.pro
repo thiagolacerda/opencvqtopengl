@@ -19,7 +19,10 @@ macx {
 
 SOURCES += main.cpp \
     frameshow.cpp \
-    opencvgl.cpp
+    opencvgl.cpp \
+    mydeclarativeview.cpp
+
 HEADERS += frameshow.h \
-    opencvgl.h
+    opencvgl.h \
+    mydeclarativeview.h
 

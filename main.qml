@@ -1,8 +1,7 @@
 import QtQuick 1.1
 
 Item {
-    width: 800
-    height: 600
+    anchors.fill: parent
 
     Rectangle {
         color: "black"
