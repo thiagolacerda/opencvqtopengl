@@ -17,9 +17,7 @@ void FrameShow::run()
 {
     cap >> img;
     m_mutex.lock();
-    out = QImage((const unsigned char*)(img.data),img.cols,img.rows,img.step,QImage::Format_RGB888).rgbSwapped();;
+    out = QImage((const unsigned char*)(img.data),img.cols,img.rows,img.step,QImage::Format_RGB888).rgbSwapped();
     m_mutex.unlock();
     emit newImage();
 }
-
-

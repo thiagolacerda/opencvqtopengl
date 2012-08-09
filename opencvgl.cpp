@@ -68,7 +68,6 @@ void OpenCVGL::paintGL()
 
 void OpenCVGL::resizeGL(int width, int height)
 {
-    qWarning() << "resizeGL";
     glViewport(0,0,width,height);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
